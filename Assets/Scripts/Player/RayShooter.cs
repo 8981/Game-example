@@ -32,7 +32,16 @@ public class RayShooter : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit))
             {
-                StartCoroutine(SphereIndicator(hit.point)); //the response of the program in response to a hit
+                GameObject hitObject = hit.transform.gameObject; //get the object which was hit
+                ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>(); 
+                if (target != null) //check componet ReactiveTarget in hitting object
+                {
+                    target.ReactToHit(); //calling a method on the target instead of generating a debug message
+                }
+                else
+                {
+                    StartCoroutine(SphereIndicator(hit.point)); //the response of the program in response to a hit
+                }
             }
         }
     }
