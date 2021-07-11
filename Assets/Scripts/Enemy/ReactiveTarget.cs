@@ -6,6 +6,11 @@ public class ReactiveTarget : MonoBehaviour
 {
     public void ReactToHit()
     {
+        WanderingAI behavior = GetComponent<WanderingAI>();
+        if (behavior != null) //Check connection scene WanderingAI to player
+        {
+            behavior.SetAlive(false);
+        }
         StartCoroutine(Die()); //method colling shotting scenes 
     }
 

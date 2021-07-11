@@ -6,21 +6,36 @@ public class WanderingAI : MonoBehaviour
 {
     public float speed = 3.0f;
     public float obstacleRange = 5.0f;
+    public bool _alive; //variable for check consist life or dead
+
+     void Start()
+    {
+        _alive = true; //initialise variable
+    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, speed * Time.deltaTime); //moves straight in spite of the bends
-        Ray ray = new Ray(transform.position, transform.forward); //the beam is aimed in the direction of sight of the object
-        RaycastHit hit;
-        
-        if (Physics.SphereCast(ray, 0.75f, out hit)) //we throw a ray with a circle described around it
+        if (_alive)
         {
-            if (hit.distance < obstacleRange) 
+            transform.Translate(0, 0, speed * Time.deltaTime); //moves straight in spite of the bends
+            Ray ray = new Ray(transform.position, transform.forward); //the beam is aimed in the direction of sight of the object
+            RaycastHit hit;
+            
+            
+            if (Physics.SphereCast(ray, 0.75f, out hit)) //we throw a ray with a circle described around it
             {
-                float angle = Random.Range(-110, 110); //turn with half random direction
-                transform.Rotate(0, angle, 0);
+                if (hit.distance < obstacleRange) 
+                {
+                    float angle = Random.Range(-110, 110); //turn with half random direction
+                    transform.Rotate(0, angle, 0);
+                }
             }
         }
+    }
+
+    public void SetAlive(bool alive)
+    {
+        _alive = alive;
     }
 }
