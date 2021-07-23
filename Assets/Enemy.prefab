@@ -124,3 +124,4 @@ MonoBehaviour:
   speed: 3
   obstacleRange: 5
   _alive: 0
+  fireballPrefab: {fileID: 2912699159309626869, guid: 1523d9f3db0566b48a3ff04f561fb7b9, type: 3}
